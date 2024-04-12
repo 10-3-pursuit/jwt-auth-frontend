@@ -26,12 +26,12 @@ export const formatDate = (dateString) => {
 
 export const getClimateColor = (climate) => {
   switch (climate) {
-    case "hot":
-      return "bg-green-500";
+    case "warm":
+      return "bg-green-400";
     case "tropical":
-      return "bg-yellow-500";
-    case "temperate":
-      return "bg-red-500";
+      return "bg-yellow-400";
+    case "hot":
+      return "bg-red-400";
     default:
       return "";
   }

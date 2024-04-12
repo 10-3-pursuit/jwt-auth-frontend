@@ -35,7 +35,7 @@ const Login = ({ setToggleLogin }) => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         await setToggleLogin(true);
-        navigate("/dashboard");
+        navigate("/trips");
       } else {
         console.log("JWT Login Failed");
       }
@@ -57,7 +57,7 @@ const Login = ({ setToggleLogin }) => {
   //Demo User Login Function
   async function handleDemoSignIn(e) {
     e.preventDefault();
-    const user = { username: "demo", password: "password" };
+    const user = { username: "demoUser", password: "olivia123" };
     postFetch(user);
   }
 
@@ -65,23 +65,19 @@ const Login = ({ setToggleLogin }) => {
     <div style={{ textAlign: "center" }}>
       <h1>Login Component</h1>
       <br />
-      <h2>
-        Use the DemoUser button to login and save time during your presentation
-      </h2>
-      <button onClick={handleDemoSignIn}>Demo User</button>
+
+      <button className="border-2 rounded-md" onClick={handleDemoSignIn}>
+        Demo User
+      </button>
       <br />
       <br />
       <br />
 
-      <h3> Remove the 'br' tags and these instructions if you use this code</h3>
-
-      <br />
-      <br />
-      <br />
-      <h3>Below is the regular login form which should be functional</h3>
-      <form onSubmit={handleSubmit}>
+      {/* <h3>Below is the regular login form which should be functional</h3> */}
+      <form className="mt-5" onSubmit={handleSubmit}>
         <label htmlFor="username">
           <input
+            className="mr-10"
             id="username"
             value={user.username}
             type="text"

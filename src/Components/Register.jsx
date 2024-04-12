@@ -5,7 +5,12 @@ const URL = import.meta.env.VITE_BASE_URL;
 
 const Register = ({ setToggleLogin }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({ username: "", password: "", email: "" });
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+    email: "",
+    country: "",
+  });
 
   function handleChange(event) {
     setUser({ ...user, [event.target.id]: event.target.value });
@@ -35,7 +40,7 @@ const Register = ({ setToggleLogin }) => {
         // set the new user's JWT token in the browser
         localStorage.setItem("token", data.token);
         setToggleLogin(true);
-        navigate("/dashboard");
+        navigate("/trips");
       }
     } catch (error) {
       console.error("Error during registration:", error);
@@ -81,6 +86,15 @@ const Register = ({ setToggleLogin }) => {
             placeholder="password"
             onChange={handleChange}
             autoComplete="current-password"
+          />
+        </label>
+        <label htmlFor="country">
+          <input
+            id="country"
+            value={user.country}
+            type="country"
+            placeholder="country"
+            onChange={handleChange}
           />
         </label>
 

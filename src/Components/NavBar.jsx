@@ -28,11 +28,10 @@ const NavBar = ({ toggleLogin, handleLogout }) => {
   }, [toggleLogin]);
 
   return (
-    <div className="navbar-container">
-      <h1>JourneeJots</h1>
+    <div className="navbar-container flex justify-around ">
       <h2>
         <Link style={{ textDecoration: "none" }} to="/">
-          ☃︎ (click here to go to Landing Page)
+          <h1>JourneeJots ✈️</h1>
         </Link>
       </h2>
 
@@ -42,7 +41,7 @@ const NavBar = ({ toggleLogin, handleLogout }) => {
         </Link>
       ) : (
         <div>
-          {user && <span>Hello, {user.username.toUpperCase()}? | </span>}
+          {user && <span>{user.username.toUpperCase()} | </span>}
           <Link onClick={handleLogout}>
             <span>Logout</span>
           </Link>

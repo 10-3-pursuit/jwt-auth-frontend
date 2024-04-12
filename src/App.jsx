@@ -7,6 +7,15 @@ import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 import NavBar from "./Components/NavBar";
 import LandingPage from "./Components/LandingPage";
+import TripsIndex from "./Components/TripsIndex";
+// import NewTrip from "./Components/TripForm";
+// import Entries from "./Components/EntriesIndex";
+import EntriesIndex from "./Components/EntriesIndex";
+import SingleEntry from "./Components/SingleEntry";
+import TripForm from "./Components/TripForm";
+import EntryForm from "./Components/EntryForm";
+
+// const API = import.meta.env.VITE_BASE_API;
 
 function App() {
   const navigate = useNavigate();
@@ -45,6 +54,13 @@ function App() {
             path="/dashboard"
             element={<Dashboard handleLogout={handleLogout} />}
           />
+          <Route path="/trips" element={<TripsIndex />} />
+          <Route path="/trips/new" element={<TripForm />} />
+          <Route path="/entries/new/:tripID" element={<EntryForm />} />
+          <Route path="/entries/:tripID" element={<EntriesIndex />} />
+          <Route path="/entries/single/:id" element={<SingleEntry />} />
+
+          {/* <Route path="/trips/new" element={<NewTrip />} /> */}
         </Route>
       </Routes>
     </>
