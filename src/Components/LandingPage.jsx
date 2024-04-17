@@ -63,7 +63,7 @@ function LandingPage() {
           setCount(count + 1);
           shiftImage(count);
         }
-      }, 2000);
+      }, 5000);
       // check if the function is working
       // console.log(count);
     }
@@ -76,74 +76,91 @@ function LandingPage() {
           setCount(count - 1);
           shiftImage(count);
         }
-      }, 2000);
+      }, 5000);
     }
   }
 
   return (
     <>
-      <div className="welcome">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Link to="/trips">
-            <button
-              className="get-started-button"
-              style={{
-                backgroundColor: "skyBlue",
-                color: "white",
-                border: "none",
-              }}
-            >
-              CLICK TO GET STARTED
-            </button>
-          </Link>
+      <div className="card">
+        <div className="hero-section button">
+          {/* Your hero content here */}
+          <h1>Welcome to My Website</h1>
+          <p>This is a fantastic place to be!</p>
         </div>
       </div>
       <div className="carousel-container">
         <div className="images-container">
           <div className="image" style={{ marginLeft: margin }}>
-            <img src={woman1} alt="woman 1" />
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713227412/JourneeJots/priscilla-du-preez-EFoH8YajQuA-unsplash_hmi95n.jpg"
+              alt="image 1"
+            />
           </div>
           <div className="image">
-            <img src={woman2} alt="woman 2" />
-          </div>
-
-          <div className="image">
-            <img src={woman3} alt="woman 3" />
-          </div>
-
-          <div className="image">
-            <img src={woman4} alt="woman 4" />
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713210315/JourneeJots/thought-catalog-23KdVfc395A-unsplash_2_qcsqze.jpg"
+              alt="image 2"
+            />
           </div>
 
           <div className="image">
-            <img src={woman5} alt="woman 5" />
-          </div>
-          <div className="image">
-            <img src={woman6} alt="woman 6" />
-          </div>
-
-          <div className="image">
-            <img src={woman7} alt="woman 7" />
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713282037/JourneeJots/atikh-bana-Ycds6emp7BA-unsplash_rrtzwu.jpg"
+              alt="image 3"
+            />
           </div>
 
           <div className="image">
-            <img src={woman8} alt="woman 8" />
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713282221/JourneeJots/jakob-owens-L0KuHxQc62s-unsplash_tpllxr.jpg"
+              alt="image 4"
+            />
           </div>
 
           <div className="image">
-            <img src={woman9} alt="woman 9" />
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713226853/JourneeJots/sebastien-jermer-n7DY58YFg9E-unsplash_rskix8.jpg"
+              alt="image 5"
+            />
           </div>
           <div className="image">
-            <img src={woman10} alt="woman 10" />
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713227128/JourneeJots/rana-sawalha-W_-6PWGbYaU-unsplash_sxletr.jpg"
+              alt="image 6"
+            />
+          </div>
+
+          <div className="image">
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713277822/JourneeJots/pietro-de-grandi-T7K4aEPoGGk-unsplash_rgeidb.jpg"
+              alt="image 7"
+            />
+          </div>
+
+          <div className="image">
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713278013/JourneeJots/dino-reichmuth-A5rCN8626Ck-unsplash_hjluxo.jpg"
+              alt="image 8"
+            />
+          </div>
+
+          <div className="image">
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713278164/JourneeJots/luca-bravo-O453M2Liufs-unsplash_bfdcsx.jpg"
+              alt="image 9"
+            />
+          </div>
+          <div className="image">
+            <img src={woman10} alt="image 10" />
           </div>
         </div>
       </div>
+      <Link to="/trips">
+        <button className="get-started-btn bg-blue-500">
+          CLICK TO GET STARTED
+        </button>
+      </Link>
     </>
   );
 }
