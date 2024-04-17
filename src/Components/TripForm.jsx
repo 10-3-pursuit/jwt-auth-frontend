@@ -75,15 +75,16 @@ const TripForm = () => {
           className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
 
-        <label className="flex justify-center" htmlFor="first_time">
+        <label className="flex justify-center mt-4" htmlFor="first_time">
           First Time?
+          <input
+            id="first_time"
+            type="checkbox"
+            onChange={handleCheckboxChange}
+            checked={first_time}
+            className="h-6 w-6 ml-6 "
+          />
         </label>
-        <input
-          id="first_time"
-          type="checkbox"
-          onChange={handleCheckboxChange}
-          checked={first_time}
-        />
         <label htmlFor="start_date">Start Date:</label>
         {/* <div></div> */}
         <input
