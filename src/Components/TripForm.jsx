@@ -9,7 +9,7 @@ const TripForm = () => {
   const [trip, setTrip] = useState({
     user_id: user.id,
     destination: "",
-    first_time: "",
+    first_time: false,
     start_date: "",
     end_date: "",
     budget: "",
@@ -44,75 +44,102 @@ const TripForm = () => {
     addTrip();
   };
 
+  //destructure the trip object
+  const {
+    destination,
+    first_time,
+    start_date,
+    end_date,
+    budget,
+    total_cost,
+    climate,
+  } = trip;
+
   return (
-    <div className="relative">
-      <div
-        style={{
-          backgroundImage:
-            "url('https://res.cloudinary.com/dvmczcg3f/image/upload/v1711646017/books_being_books_jpg_ufdxkr.jpg')",
-          backgroundSize: "cover",
-        }}
-      ></div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="destination">Destination:</label>
+    <div className="flex justify-center">
+      <form
+        className="w-96 grid gap-2 pt-4 rounded-2xl shadow-2xl border-2
+          border-slate-200 px-4 mt-24"
+        onSubmit={handleSubmit}
+      >
+        <label className="flex justify-center" htmlFor="destination">
+          Destination:
+        </label>
         <input
           id="destination"
-          value={trip.destination}
+          value={destination}
           type="text"
           onChange={handleTextChange}
           placeholder="Enter Destination"
           required
+          className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
 
-        <label htmlFor="first_time">First Time?</label>
+        <label className="flex justify-center" htmlFor="first_time">
+          First Time?
+        </label>
         <input
           id="first_time"
           type="checkbox"
           onChange={handleCheckboxChange}
-          checked={trip.first_time}
+          checked={first_time}
         />
         <label htmlFor="start_date">Start Date:</label>
+        {/* <div></div> */}
         <input
           id="start_date"
           type="date"
           name="start_date"
-          value={trip.start_date}
+          value={start_date}
           onChange={handleTextChange}
+          className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
         <label htmlFor="end_date">End Date:</label>
         <input
           id="end_date"
           type="date"
           name="end_date"
-          value={trip.end_date}
+          value={end_date}
           onChange={handleTextChange}
+          className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
         <label htmlFor="budget">Budget:</label>
         <input
           id="budget"
           name="budget"
           type="number"
-          value={trip.budget}
+          value={budget}
           onChange={handleTextChange}
+          placeholder="Enter your budget"
+          className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
-        <label htmlFor="total_cost">Cost:</label>
+        <label htmlFor="total_cost">Spent so far:</label>
         <input
           id="total_cost"
-          value={trip.total_cost}
+          value={total_cost}
           type="text"
           onChange={handleTextChange}
-          required
+          placeholder="Enter amount spent so far"
+          className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
         <label htmlFor="climate">Climate:</label>
         <input
           id="climate"
-          value={trip.climate}
+          value={climate}
           type="text"
           onChange={handleTextChange}
           required
+          placeholder="hot, cold, or tropical"
+          className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
         <br />
-        <input type="submit" />
+        {/* <input type="submit" />
+         */}
+        <div className="flex justify-center">
+          <button className="bg-green-400 hover:bg-slate-200 rounded-lg px-3 py-2 shadow-md w-full mb-12">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );
