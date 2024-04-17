@@ -62,7 +62,10 @@ const TripForm = () => {
           border-slate-200 px-4 mt-24"
         onSubmit={handleSubmit}
       >
-        <label className="flex justify-center" htmlFor="destination">
+        <label
+          className="flex justify-center mt-6 text-2xl font-semibold"
+          htmlFor="destination"
+        >
           Destination:
         </label>
         <input
