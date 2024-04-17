@@ -15,6 +15,7 @@ import SingleEntry from "./Components/SingleEntry";
 import TripForm from "./Components/TripForm";
 import EntryForm from "./Components/EntryForm";
 import EntryEditForm from "./Components/EntryEditForm";
+import TripEditForm from "./Components/TripEditForm";
 
 // const API = import.meta.env.VITE_BASE_API;
 
@@ -57,6 +58,7 @@ function App() {
           />
           <Route path="/trips" element={<TripsIndex />} />
           <Route path="/trips/new" element={<TripForm />} />
+          <Route path="/trips/:id" element={<TripEditForm />} />
           <Route path="/trips/:tripID/entries/new" element={<EntryForm />} />
           <Route
             path="/trips/:tripID/entries/:id/edit"
