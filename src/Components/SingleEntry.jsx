@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { formatDate, getClimateColor } from "../Helpers/helpers";
+import { formatDate } from "../Helpers/helpers";
 import { PencilLine } from "lucide-react";
 import { Home } from "lucide-react";
 import { SquareChevronLeft } from "lucide-react";
+import { useOutletContext } from "react-router-dom";
 
 const API = import.meta.env.VITE_BASE_URL;
 
 const SingleEntry = () => {
+  const { user } = useOutletContext();
   const navigate = useNavigate();
   const { id, tripID } = useParams();
   const [oneEntry, setOneEntry] = useState({});
