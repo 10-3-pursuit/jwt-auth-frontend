@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { formatDate } from "../Helpers/helpers";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { ArrowBigUpDash } from "lucide-react";
-import TripForm from "./TripForm";
+import { Trash2 } from "lucide-react";
+
+// import TripForm from "./TripForm";
 
 const API = import.meta.env.VITE_BASE_URL;
 const EntriesIndex = () => {
+  const navigate = useNavigate();
   const { tripID } = useParams();
   const [entries, setEntries] = useState([]);
 
@@ -13,8 +16,7 @@ const EntriesIndex = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // must do the fetch call like this
-  useEffect(() => {
+  const fetchEntries = () => {
     const token = localStorage.getItem("token");
     if (token) {
       fetch(`${API}/api/entries/${tripID}`, {
@@ -28,14 +30,58 @@ const EntriesIndex = () => {
         })
         .catch((error) => console.error("Error fetching user:", error));
     }
+  };
+
+  useEffect(() => {
+    fetchEntries();
   }, []);
 
-  // return <div>hello</div>;
+  const handleDelete = (entryId) => {
+    const token = localStorage.getItem("token");
+    fetch(`${API}/api/entries/${entryId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setEntries(entries.filter((entry) => entry.id !== entryId));
+        } else {
+          throw new Error("Failed to delete entry");
+        }
+      })
+      .catch((error) => console.error("Error deleting entry:", error));
+  };
+
   return (
-    <div>
-      <div>
+    <div className="mt-24">
+      <div className="flex justify-between mx-6 mb-24">
+        <Link to={`/trips/${tripID}/entries/new`}>
+          <button className=" border-2 p-3 rounded-lg w-24 md:w-48 bg-green-500 hover:bg-green-600 text-white">
+            Add Entry
+          </button>
+        </Link>
+        <button
+          onClick={() => navigate(-1)}
+          className=" border-2 p-3 rounded-lg w-24 md:w-48 bg-slate-400 hover:bg-slate-500 text-white"
+        >
+          Back
+        </button>
+      </div>
+      <div className="grid grid-cols-3 gap-5 m-6">
         {entries.map(({ id, entry_date, entry, total_spent }) => (
-          <div className="border-2 border-emerald-500 mb-5" key={id}>
+          <div
+            className="pt-8 pb-12 rounded-2xl shadow-2xl border-2
+          border-slate-200 p-2 "
+            key={id}
+          >
+            <div className="flex justify-end ">
+              <Trash2
+                className="mb-2 hover:text-red-400"
+                onClick={() => handleDelete(id)}
+              />
+            </div>
             <div className="flex justify-between">
               <p>Total Spent: ${total_spent}</p>
               <p>Date: {formatDate(entry_date)}</p>
@@ -44,11 +90,11 @@ const EntriesIndex = () => {
               <p className="line-clamp-1">{entry}</p>
             </div>
 
-            <div className="flex justify-center">
-              <Link to={`/entries/single/${id}`}>
+            <div className="flex justify-center mt-4">
+              <Link to={`/trips/${tripID}/entries/${id}`}>
                 <button
                   type="button"
-                  class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 border-2 border-black-500 mb-2 ml-3 p-1"
+                  className="text-white bg-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 border-2 border-black-500 mb-2 ml-3 p-1 hover:bg-blue-500"
                 >
                   View Entry
                 </button>
@@ -57,16 +103,12 @@ const EntriesIndex = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-between">
-        <Link to={`/entries/new/${tripID}`}>
-          <button className=" border-2">Add Entry</button>
-        </Link>
-        <ArrowBigUpDash
-          onClick={handleScrollToTop}
-          id="myBtn"
-          title="Go to top"
-        />
-      </div>
+
+      {/* <ArrowBigUpDash
+        onClick={handleScrollToTop}
+        id="myBtn"
+        title="Go to top"
+      /> */}
     </div>
   );
 };
