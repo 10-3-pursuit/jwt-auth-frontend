@@ -1,16 +1,7 @@
 import { Link } from "react-router-dom";
 import "../App.css";
 import { useState } from "react";
-import woman1 from "../images/woman1.jpeg";
-import woman2 from "../images/woman2.jpeg";
-import woman3 from "../images/woman3.jpeg";
-import woman4 from "../images/woman4.jpeg";
-import woman5 from "../images/woman5.jpeg";
-import woman6 from "../images/woman6.jpeg";
-import woman7 from "../images/woman7.jpeg";
-import woman8 from "../images/woman8.jpeg";
-import woman9 from "../images/woman9.jpeg";
-import woman10 from "../images/woman10.jpeg";
+import { MoveLeft, MoveRight } from "lucide-react";
 
 function LandingPage() {
   const [count, setCount] = useState(0);
@@ -80,15 +71,16 @@ function LandingPage() {
     }
   }
 
+  const goToNextPhoto = () => {
+    setCount((count) => (count === 0 ? count + 1 : count - 1));
+  };
+
+  // const goToNextPhoto = () => {
+  //   setCurrentIndex((count) => (count === 10 - 1 ? 0 : count + 1));
+  // };
+
   return (
     <>
-      <div className="card">
-        <div className="hero-section button">
-          {/* Your hero content here */}
-          <h1>Welcome to My Website</h1>
-          <p>This is a fantastic place to be!</p>
-        </div>
-      </div>
       <div className="carousel-container">
         <div className="images-container">
           <div className="image" style={{ marginLeft: margin }}>
@@ -152,12 +144,34 @@ function LandingPage() {
             />
           </div>
           <div className="image">
-            <img src={woman10} alt="image 10" />
+            <img
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713335363/JourneeJots/rebe-adelaida-zunQwMy5B6M-unsplash_bvbm4b.jpg"
+              alt="image 10"
+            />
           </div>
         </div>
       </div>
+      {/* add functionality to this buttton */}
+      {/* <div className="move-right-btn">
+        <button
+          onClick={() => goToNextPhoto}
+          className="mx-2 text-white py-auto px-4 hover:animate-ping"
+        >
+          <MoveRight size={20} />
+        </button>
+      </div> */}
+
+      {/* add functionality to this buttton */}
+      {/* <div className="move-left-btn">
+        <button
+          onClick={() => goToPrevPhoto}
+          className="mx-2 text-white py-auto px-4 hover:animate-ping"
+        >
+          <MoveLeft size={20} />
+        </button>
+      </div> */}
       <Link to="/trips">
-        <button className="get-started-btn bg-blue-500">
+        <button className="get-started-btn hover:bg-red-400">
           CLICK TO GET STARTED
         </button>
       </Link>
