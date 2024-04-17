@@ -55,11 +55,10 @@ const TripsIndex = () => {
 
   return (
     <div>
-      <div className="flex justify-between">
-        <h2 className="">Trips</h2>
+      <div className="flex justify-end">
         <button
           onClick={() => navigate("/trips/new")}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded inline-block my-4 mr-4"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded inline-block my-4 mr-6 mt-14 w-1/6"
         >
           Add Trip
         </button>
