@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 const API = import.meta.env.VITE_BASE_URL;
 const TripForm = () => {
@@ -13,7 +13,7 @@ const TripForm = () => {
     start_date: "",
     end_date: "",
     budget: "",
-    total_cost: "",
+
     climate: "",
   });
 
@@ -51,7 +51,7 @@ const TripForm = () => {
     start_date,
     end_date,
     budget,
-    total_cost,
+    // total_cost,
     climate,
   } = trip;
 
@@ -63,7 +63,7 @@ const TripForm = () => {
         onSubmit={handleSubmit}
       >
         <label
-          className="flex justify-center mt-6 text-2xl font-semibold"
+          className="flex justify-center mt-4 text-2xl font-semibold"
           htmlFor="destination"
         >
           Destination:
@@ -117,7 +117,7 @@ const TripForm = () => {
           placeholder="Enter your budget"
           className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
-        <label htmlFor="total_cost">Spent so far:</label>
+        {/* <label htmlFor="total_cost">Spent so far:</label>
         <input
           id="total_cost"
           value={total_cost}
@@ -125,7 +125,7 @@ const TripForm = () => {
           onChange={handleTextChange}
           placeholder="Enter amount spent so far"
           className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
-        />
+        /> */}
         <label htmlFor="climate">Climate:</label>
         <input
           id="climate"
@@ -139,9 +139,15 @@ const TripForm = () => {
         <br />
         {/* <input type="submit" />
          */}
-        <div className="flex justify-center">
-          <button className="bg-green-400 hover:bg-slate-200 rounded-lg px-3 py-2 shadow-md w-full mb-12">
+        <div className="flex justify-between">
+          <button className="bg-green-400 hover:bg-green-500 rounded-lg px-3 py-2 shadow-md w-1/2 mb-12 mr-2">
             Submit
+          </button>
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-red-400 hover:bg-red-500 rounded-lg px-3 py-2 shadow-md w-1/2 mb-12 ml-2"
+          >
+            Cancel
           </button>
         </div>
       </form>
