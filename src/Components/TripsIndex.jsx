@@ -73,7 +73,7 @@ const TripsIndex = () => {
             start_date,
             end_date,
             budget,
-            total_cost,
+            // total_cost,
             climate,
             entry_count,
           }) => (
@@ -112,7 +112,7 @@ const TripsIndex = () => {
 
                 <p>End Date: {formatDate(end_date)}</p>
                 <p>Budget: ${budget}</p>
-                <p>Spent so far: ${total_cost}</p>
+                {/* <p>Spent so far: ${total_cost}</p> */}
                 <p className={climate}>Climate: {climate}</p>
                 <p># of entries:{entry_count}</p>
                 <div className="flex justify-center mt-2 pb-2">
@@ -123,7 +123,10 @@ const TripsIndex = () => {
                     Entries
                   </button>
 
-                  <button className="bg-orange-300 rounded p-1 hover:bg-slate-200 w-1/3">
+                  <button
+                    onClick={() => navigate(`/trips/${id}`)}
+                    className="bg-orange-300 rounded p-1 hover:bg-slate-200 w-1/3"
+                  >
                     Edit
                   </button>
                 </div>
