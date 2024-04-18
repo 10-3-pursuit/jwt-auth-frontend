@@ -2,9 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { formatDate, getClimateColor } from "../Helpers/helpers";
-import { Trash2 } from "lucide-react";
-import { MapPin } from "lucide-react";
-import { MapPinOff } from "lucide-react";
+import { Trash2, MapPin, MapPinOff } from "lucide-react";
 
 const API = import.meta.env.VITE_BASE_URL;
 const TripsIndex = () => {
@@ -55,6 +53,10 @@ const TripsIndex = () => {
 
   return (
     <div>
+      <div className="text-center mt-12 text-4xl font-semibold bg-slate-100 py-2 mx-6">
+        <h1>Trips</h1>
+      </div>
+
       <div className="flex justify-end">
         <button
           onClick={() => navigate("/trips/new")}
@@ -63,7 +65,6 @@ const TripsIndex = () => {
           Add Trip
         </button>
       </div>
-
       <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mx-5 pt-10">
         {trips.map(
           ({

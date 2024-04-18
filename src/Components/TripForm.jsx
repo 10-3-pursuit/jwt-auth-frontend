@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+
 const API = import.meta.env.VITE_BASE_URL;
 const TripForm = () => {
   const navigate = useNavigate();
@@ -32,7 +33,8 @@ const TripForm = () => {
   };
 
   const handleTextChange = (event) => {
-    setTrip({ ...trip, [event.target.id]: event.target.value });
+    const { id, value } = event.target;
+    setTrip({ ...trip, [id]: value });
   };
 
   const handleCheckboxChange = () => {
@@ -62,11 +64,14 @@ const TripForm = () => {
           border-slate-200 px-4 mt-24"
         onSubmit={handleSubmit}
       >
+        {/* Destination Input */}
         <label
-          className="flex justify-center mt-4 text-2xl font-semibold"
+          className="flex justify-center mt-2 text-2xl font-semibold"
           htmlFor="destination"
         >
-          Destination:
+          <h2 className="text-center mt-2 text-3xl font-semibold ">
+            Create a Trip
+          </h2>
         </label>
         <input
           id="destination"
@@ -77,7 +82,7 @@ const TripForm = () => {
           required
           className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
-
+        {/* First Time Checkbox */}
         <label className="flex justify-center mt-4" htmlFor="first_time">
           First Time?
           <input
@@ -88,8 +93,8 @@ const TripForm = () => {
             className="h-6 w-6 ml-6 "
           />
         </label>
+        {/* Start Date */}
         <label htmlFor="start_date">Start Date:</label>
-        {/* <div></div> */}
         <input
           id="start_date"
           type="date"
@@ -98,6 +103,7 @@ const TripForm = () => {
           onChange={handleTextChange}
           className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
+        {/* End Date */}
         <label htmlFor="end_date">End Date:</label>
         <input
           id="end_date"
@@ -107,6 +113,7 @@ const TripForm = () => {
           onChange={handleTextChange}
           className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
+        {/* Budget  Input */}
         <label htmlFor="budget">Budget:</label>
         <input
           id="budget"
@@ -117,32 +124,28 @@ const TripForm = () => {
           placeholder="Enter your budget"
           className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
         />
-        {/* <label htmlFor="total_cost">Spent so far:</label>
-        <input
-          id="total_cost"
-          value={total_cost}
-          type="text"
-          onChange={handleTextChange}
-          placeholder="Enter amount spent so far"
-          className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
-        /> */}
-        <label htmlFor="climate">Climate:</label>
-        <input
+
+        {/* Climate Dropdown*/}
+        <label htmlFor="climate">Choose a Climate:</label>
+        <select
+          name="climate"
           id="climate"
           value={climate}
-          type="text"
           onChange={handleTextChange}
-          required
-          placeholder="hot, cold, or tropical"
           className="shadow-md border-2 border-black hover:bg-white bg-zinc-100 rounded-lg py-2 px-3"
-        />
-        <br />
-        {/* <input type="submit" />
-         */}
+        >
+          <option value="---">---</option>
+          <option value="hot">Hot</option>
+          <option value="tropical">Tropical</option>
+          <option value="warm">Warm</option>
+          <option value="cold">Cold</option>
+        </select>
+        {/* Submit button */}
         <div className="flex justify-between">
           <button className="bg-green-400 hover:bg-green-500 rounded-lg px-3 py-2 shadow-md w-1/2 mb-12 mr-2">
             Submit
           </button>
+          {/* Cancel Button */}
           <button
             onClick={() => navigate(-1)}
             className="bg-red-400 hover:bg-red-500 rounded-lg px-3 py-2 shadow-md w-1/2 mb-12 ml-2"

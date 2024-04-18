@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { formatDate } from "../Helpers/helpers";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { ArrowBigUpDash } from "lucide-react";
+// import { ArrowBigUpDash } from "lucide-react";
 import { Trash2 } from "lucide-react";
 
 // import TripForm from "./TripForm";
@@ -12,9 +12,10 @@ const EntriesIndex = () => {
   const { tripID } = useParams();
   const [entries, setEntries] = useState([]);
 
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  // work on making this nice in the future
+  // const handleScrollToTop = () => {
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // };
 
   const fetchEntries = () => {
     const token = localStorage.getItem("token");
@@ -55,8 +56,11 @@ const EntriesIndex = () => {
   };
 
   return (
-    <div className="mt-24">
-      <div className="flex justify-between mx-6 mb-24">
+    <div className="">
+      <div className="text-center mt-10  text-4xl font-semibold bg-slate-100 py-2 mx-6">
+        <h1>Entries</h1>
+      </div>
+      <div className="flex justify-between mx-6 mb-24 mt-10">
         <Link to={`/trips/${tripID}/entries/new`}>
           <button className=" border-2 p-3 rounded-lg w-24 md:w-48 bg-green-500 hover:bg-green-600 text-white">
             Add Entry
@@ -103,12 +107,6 @@ const EntriesIndex = () => {
           </div>
         ))}
       </div>
-
-      {/* <ArrowBigUpDash
-        onClick={handleScrollToTop}
-        id="myBtn"
-        title="Go to top"
-      /> */}
     </div>
   );
 };

@@ -54,7 +54,7 @@ function LandingPage() {
           setCount(count + 1);
           shiftImage(count);
         }
-      }, 5000);
+      }, 3000);
       // check if the function is working
       // console.log(count);
     }
@@ -67,16 +67,13 @@ function LandingPage() {
           setCount(count - 1);
           shiftImage(count);
         }
-      }, 5000);
+      }, 3000);
     }
   }
 
-  const goToNextPhoto = () => {
-    setCount((count) => (count === 0 ? count + 1 : count - 1));
-  };
-
+  // Try to implement this in the future
   // const goToNextPhoto = () => {
-  //   setCurrentIndex((count) => (count === 10 - 1 ? 0 : count + 1));
+  //   setCount((count) => (count === 0 ? count + 1 : count - 1));
   // };
 
   return (
@@ -105,7 +102,7 @@ function LandingPage() {
 
           <div className="image">
             <img
-              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713282221/JourneeJots/jakob-owens-L0KuHxQc62s-unsplash_tpllxr.jpg"
+              src="https://res.cloudinary.com/dluexpyt4/image/upload/c_crop,ar_16:9/v1713408020/JourneeJots/chris-czermak-7ybKmhDTcz0-unsplash_sd1dej.jpg"
               alt="image 4"
             />
           </div>

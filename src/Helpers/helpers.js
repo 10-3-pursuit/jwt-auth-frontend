@@ -32,6 +32,8 @@ export const getClimateColor = (climate) => {
       return "bg-yellow-400";
     case "hot":
       return "bg-red-400";
+    case "cold":
+      return "bg-blue-400";
     default:
       return "";
   }
