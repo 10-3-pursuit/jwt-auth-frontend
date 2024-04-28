@@ -1,7 +1,11 @@
 import { useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { formatDate, getClimateColor } from "../Helpers/helpers";
+import {
+  formatDate,
+  getClimateColor,
+  capitalizeFirstLetter,
+} from "../Helpers/helpers";
 import { Trash2, MapPin, MapPinOff } from "lucide-react";
 
 const API = import.meta.env.VITE_BASE_URL;
@@ -10,8 +14,9 @@ const TripsIndex = () => {
   const { user } = useOutletContext(); // Access user data provided by the Outlet's context
 
   const [trips, setTrips] = useState([]);
+  const [filteredTrips, setFilteredTrips] = useState([]); // State for filtered trips
+  const [input, setInput] = useState("");
 
-  // must do the fetch call like this
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -23,6 +28,7 @@ const TripsIndex = () => {
         .then((response) => response.json())
         .then((data) => {
           setTrips(data);
+          setFilteredTrips(data); // Initialize filteredTrips with all trips
         })
         .catch((error) => console.error("Error fetching user:", error));
     }
@@ -42,8 +48,9 @@ const TripsIndex = () => {
     })
       .then((response) => {
         if (response.ok) {
-          // Remove the deleted trip from the state
+          // Remove the deleted trip from both trips and filteredTrips state
           setTrips(trips.filter((trip) => trip.id !== tripId));
+          setFilteredTrips(filteredTrips.filter((trip) => trip.id !== tripId));
         } else {
           throw new Error("Failed to delete trip");
         }
@@ -51,12 +58,33 @@ const TripsIndex = () => {
       .catch((error) => console.error("Error deleting trip:", error));
   };
 
+  function handleSearchChange(event) {
+    const search = event.target.value;
+    const result = search.length
+      ? trips.filter((trip) =>
+          trip.destination.toLowerCase().includes(search.toLowerCase())
+        )
+      : trips; // Use original trips when search is empty
+    setInput(search);
+    setFilteredTrips(result);
+  }
+
   return (
     <div>
       <div className="text-center mt-12 text-4xl font-semibold bg-slate-100 py-2 mx-6">
         <h1>Trips</h1>
       </div>
-
+      <div className="flex justify-end">
+        <h1>
+          <input
+            type="text"
+            placeholder="Search.."
+            id="search"
+            value={input}
+            onChange={handleSearchChange}
+          ></input>
+        </h1>
+      </div>
       <div className="flex justify-end">
         <button
           onClick={() => navigate("/trips/new")}
@@ -66,7 +94,7 @@ const TripsIndex = () => {
         </button>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mx-5 pt-10">
-        {trips.map(
+        {filteredTrips.map(
           ({
             id,
             destination,
@@ -74,7 +102,6 @@ const TripsIndex = () => {
             start_date,
             end_date,
             budget,
-            // total_cost,
             climate,
             entry_count,
           }) => (
@@ -88,7 +115,7 @@ const TripsIndex = () => {
                     climate
                   )} text-2xl flex items-center rounded-sm px-3`}
                 >
-                  {destination}
+                  {capitalizeFirstLetter(destination)}
                   <div className="flex ml-auto">
                     <h3 className="mr-2">
                       {first_time ? (
@@ -113,7 +140,6 @@ const TripsIndex = () => {
 
                 <p>End Date: {formatDate(end_date)}</p>
                 <p>Budget: ${budget}</p>
-                {/* <p>Spent so far: ${total_cost}</p> */}
                 <p className={climate}>Climate: {climate}</p>
                 <p># of entries:{entry_count}</p>
                 <div className="flex justify-center mt-2 pb-2">
