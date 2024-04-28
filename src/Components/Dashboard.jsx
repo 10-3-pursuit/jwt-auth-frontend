@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 
 const Dashboard = ({ handleLogout }) => {
   const { user } = useOutletContext(); // Access user data provided by the Outlet's context
-
+  console.log(user);
   return (
     <div>
       <br />
