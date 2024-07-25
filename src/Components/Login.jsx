@@ -35,7 +35,7 @@ const Login = ({ setToggleLogin }) => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         await setToggleLogin(true);
-        navigate("/dashboard");
+        navigate("/");
       } else {
         console.log("JWT Login Failed");
       }
@@ -59,53 +59,72 @@ const Login = ({ setToggleLogin }) => {
     e.preventDefault();
     const user = { username: "demo", password: "password" };
     postFetch(user);
+    // navigate("/");
   }
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Login Component</h1>
-      <br />
-      <h2>
-        Use the DemoUser button to login and save time during your presentation
-      </h2>
-      <button onClick={handleDemoSignIn}>Demo User</button>
-      <br />
-      <br />
-      <br />
+    <div className="bg-slate-900 h-auto pb-48">
+      <div className="text-center pt-24 pb-10">
+        <h1 className="text-3xl md:text-5xl text-white">
+          Welcome back, we missed you!
+        </h1>
+        <h2 className="text-xl md:text-2xl text-slate-200 mt-2">
+          Login to catch up on everything Tale Blazers.
+        </h2>
+      </div>
+      <div className="flex justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="w-96 grid gap-4 bg-white pt-8 pb-12 rounded-2xl shadow-2xl border-2
+          border-slate-200"
+        >
+          <h2 className="text-2xl text-center font-semibold ">Login</h2>
+          <label htmlFor="username" className="flex justify-center">
+            <input
+              id="username"
+              value={user.username}
+              type="text"
+              placeholder="username"
+              autoComplete="username"
+              onChange={handleChange}
+              className="hover:bg-slate-100 rounded py-3 shadow-md w-3/4 pl-3"
+            />
+          </label>
 
-      <h3> Remove the 'br' tags and these instructions if you use this code</h3>
-
-      <br />
-      <br />
-      <br />
-      <h3>Below is the regular login form which should be functional</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">
-          <input
-            id="username"
-            value={user.username}
-            type="text"
-            placeholder="username"
-            autoComplete="username"
-            onChange={handleChange}
-          />
-        </label>
-
-        <label htmlFor="password">
-          <input
-            id="password"
-            value={user.password}
-            type="password"
-            placeholder="password"
-            onChange={handleChange}
-            autoComplete="current-password"
-          />
-        </label>
-        <button>Submit</button>
-      </form>
-      <p>
-        No Account? <Link to="/register">Register</Link>
-      </p>
+          <label htmlFor="password" className="flex justify-center">
+            <input
+              id="password"
+              value={user.password}
+              type="password"
+              placeholder="password"
+              onChange={handleChange}
+              autoComplete="current-password"
+              className="hover:bg-slate-100 rounded py-3 shadow-md w-3/4 pl-3"
+            />
+          </label>
+          <div className="flex justify-center">
+            <button className="bg-green-400 hover:bg-slate-200 rounded px-2 py-3 shadow-md w-3/4">
+              Submit
+            </button>
+          </div>
+          <div className="text-center mt-3">
+            <p>
+              No Account?{" "}
+              <Link to="/register" className="text-blue-600">
+                Register
+              </Link>
+            </p>
+          </div>
+        </form>
+      </div>
+      <div className="flex justify-center">
+        <button
+          onClick={handleDemoSignIn}
+          className="bg-lime-300 hover:bg-emerald-300 rounded mt-10 px-2 py-2"
+        >
+          Guest
+        </button>
+      </div>
     </div>
   );
 };
