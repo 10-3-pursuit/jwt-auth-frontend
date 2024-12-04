@@ -35,7 +35,7 @@ const Login = ({ setToggleLogin }) => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         await setToggleLogin(true);
-        navigate("/dashboard");
+        navigate("/trips");
       } else {
         console.log("JWT Login Failed");
       }
@@ -57,55 +57,64 @@ const Login = ({ setToggleLogin }) => {
   //Demo User Login Function
   async function handleDemoSignIn(e) {
     e.preventDefault();
-    const user = { username: "demo", password: "password" };
+    const user = { username: "demoUser", password: "olivia123" };
     postFetch(user);
   }
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Login Component</h1>
-      <br />
-      <h2>
-        Use the DemoUser button to login and save time during your presentation
-      </h2>
-      <button onClick={handleDemoSignIn}>Demo User</button>
-      <br />
-      <br />
       <br />
 
-      <h3> Remove the 'br' tags and these instructions if you use this code</h3>
+      <button
+        className="border-2 rounded-md p-1 bg-violet-300 hover:bg-violet-400 mb-6"
+        onClick={handleDemoSignIn}
+      >
+        Demo User
+      </button>
 
-      <br />
-      <br />
-      <br />
-      <h3>Below is the regular login form which should be functional</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">
-          <input
-            id="username"
-            value={user.username}
-            type="text"
-            placeholder="username"
-            autoComplete="username"
-            onChange={handleChange}
-          />
-        </label>
+      <div className="flex justify-center">
+        <form
+          className="w-96 grid gap-4 pt-8 pb-12 rounded-2xl shadow-2xl border-2
+          border-slate-200"
+          onSubmit={handleSubmit}
+        >
+          <h2 className="text-2xl text-center font-semibold ">Login</h2>
+          <label htmlFor="username">
+            <input
+              className="hover:bg-slate-100 rounded py-3 shadow-md w-3/4 pl-3"
+              id="username"
+              value={user.username}
+              type="text"
+              placeholder="username"
+              autoComplete="username"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label htmlFor="password">
-          <input
-            id="password"
-            value={user.password}
-            type="password"
-            placeholder="password"
-            onChange={handleChange}
-            autoComplete="current-password"
-          />
-        </label>
-        <button>Submit</button>
-      </form>
-      <p>
-        No Account? <Link to="/register">Register</Link>
-      </p>
+          <label htmlFor="password">
+            <input
+              className="hover:bg-slate-100 rounded py-3 shadow-md w-3/4 pl-3"
+              id="password"
+              value={user.password}
+              type="password"
+              placeholder="password"
+              onChange={handleChange}
+              autoComplete="current-password"
+            />
+          </label>
+          <div className="flex justify-center">
+            <button className="bg-green-400 hover:bg-slate-200 rounded px-2 py-3 shadow-md w-3/4">
+              Submit
+            </button>
+          </div>
+          <p>
+            No Account?{" "}
+            <Link to="/register" className="text-blue-600 hover:text-blue-800">
+              Register
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
